@@ -23,8 +23,6 @@ def unify(C):
     else:
         return "No se puede unificar las restricciones"
 
-
-
 def apply_substitution(substitution, term):
     if isinstance(term, str):
         return substitution.get(term, term)
@@ -32,7 +30,6 @@ def apply_substitution(substitution, term):
         return tuple(apply_substitution(substitution, t) for t in term)
     else:
         return term
-
 
 def FV(term):
     if isinstance(term, str):
@@ -42,7 +39,6 @@ def FV(term):
     else:
         return set()
 
-
 def is_valid_type(type_str):
     if type_str in ("Nat", "Bool"):
         return True
@@ -51,7 +47,6 @@ def is_valid_type(type_str):
     if isinstance(type_str, str) and re.match(r"^[a-zA-Z][a-zA-Z0-9]*\s*->\s*[a-zA-Z][a-zA-Z0-9]*$", type_str):
         return True
     return False
-
 
 def parse_type(type_str):
     if type_str == "Nat":
@@ -66,7 +61,6 @@ def parse_type(type_str):
             return (parse_type(match.group(1)), parse_type(match.group(2)))
     raise ValueError(f"Invalid type: {type_str}")
 
-
 def get_subconstraints(S, T):
     if isinstance(S, str) and isinstance(T, str):
         return [(S, T)]
@@ -74,7 +68,6 @@ def get_subconstraints(S, T):
         return [(S[0], T[0]), (S[1], T[1])]
     else:
         return []
-
 
 def read_constraints(filename):
     constraints = []
@@ -85,16 +78,24 @@ def read_constraints(filename):
             constraints.append((parse_type(constraint[0].strip()), parse_type(constraint[1].strip())))
     return constraints
 
+def format_unifications(unifications):
+    formatted_unifications = []
+    for var, value in unifications:
+        formatted_unifications.append(f"{var} -> {value}")
+    return formatted_unifications
 
 def main():
     filename = input("Ingrese el nombre del archivo: ")
     constraints = read_constraints(filename)
     result = unify(constraints)
-    if result == "fail":
-        print("No se puede unificar las restricciones.")
-    else:
-        print(result)
 
+    if isinstance(result, str):
+        print(result)
+    else:
+        formatted_result = format_unifications(result)
+        print("Unificaciones:")
+        for unification in formatted_result:
+            print(unification)
 
 if __name__ == '__main__':
     main()
