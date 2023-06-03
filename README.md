@@ -45,3 +45,5 @@ to solve the constraints, and displays the result.
 
 The program is executed by calling the main() function if it is run directly as a script, i.e., 
 if the file is executed and not imported as a module in another program.
+
+the Program run whit src/main.py
