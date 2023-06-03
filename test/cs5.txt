@@ -1,0 +1,3 @@
+X = Nat
+Y = Bool
+X = Y
