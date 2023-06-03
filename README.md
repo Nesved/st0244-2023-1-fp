@@ -47,3 +47,9 @@ The program is executed by calling the main() function if it is run directly as 
 if the file is executed and not imported as a module in another program.
 
 the Program run whit src/main.py
+
+
+Comment for the teacher: Teacher, in the end, I decided to implement the algorithm in the Python 
+language thanks to the help of a classmate who assisted me in correcting the issue I was facing. 
+Although I couldn't refine many things when it came to meeting certain more complex and advanced 
+constraints.
