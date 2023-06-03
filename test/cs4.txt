@@ -1,1 +1,5 @@
-Y = Nat -> Y
+X = a
+Y = b
+Z = c
+A = X -> Y
+B = A -> Z
